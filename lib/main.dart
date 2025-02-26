@@ -1,43 +1,82 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text('Olave Cruz Cesar Daniel',
+                  style: TextStyle(fontSize: 25, color: Colors.white)),
+              Text('21308051280458',
+                  style: TextStyle(fontSize: 16, color: Colors.white)),
+            ],
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.blue,
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconWithCaption(
+                      icon: Icons.home, caption: 'Inicio', color: Colors.blue),
+                  IconWithCaption(
+                      icon: Icons.search,
+                      caption: 'Buscar',
+                      color: Colors.green),
+                ],
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconWithCaption(
+                      icon: Icons.settings,
+                      caption: 'Configuración',
+                      color: Colors.orange),
+                  IconWithCaption(
+                      icon: Icons.person,
+                      caption: 'Perfil',
+                      color: Colors.purple),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class IconWithCaption extends StatelessWidget {
+  final IconData icon;
+  final String caption;
+  final Color color;
+
+  IconWithCaption(
+      {required this.icon, required this.caption, this.color = Colors.black});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon, size: 40, color: color),
+        SizedBox(height: 8),
+        Text(caption),
+      ],
     );
   }
 }
